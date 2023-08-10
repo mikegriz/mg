@@ -1,3 +1,25 @@
-<iframe src="https://many.bio/mgriz" style="height: 500px; width: 100%;"
-    onload="document.getElementById('clogo').style.display='none';document.querySelector('.removebranding').style.display='none';">
-</iframe>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iframe Example</title>
+    <script>
+        window.addEventListener("DOMContentLoaded", function() {
+            const iframe = document.getElementById("targetIframe");
+            iframe.onload = function() {
+                try {
+                    const content = iframe.contentWindow || iframe.contentDocument;
+                    const targetElement = content.document.querySelector(".removebranding");
+                    if (targetElement) targetElement.style.display = "none";
+                } catch (error) {
+                    console.warn("Unable to access iframe content:", error);
+                }
+            };
+        });
+    </script>
+</head>
+<body>
+    <iframe id="targetIframe" src="https://many.bio/mgriz" width="800" height="600"></iframe>
+</body>
+</html>
